@@ -18,11 +18,12 @@ app.use("/api/auth", authRouter);
 app.use("/api/messages", messageRouter);
 
 
+// deployment setup
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
     app.get("*", (req, res) => {
-        res.sendFile(path.join(__dirname, "../frotend", "dist", "index.html"))
+        res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"))
     })
 };  
 
