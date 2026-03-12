@@ -1,22 +1,18 @@
-import express from 'express';
+import express from "express";
+import dotenv from "dotenv";
+import authRouter from "./routes/auth.route.js";
+import messageRouter from "./routes/message.route.js";
+
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
+app.use("/api/auth", authRouter);
+app.use("/api/messages", messageRouter);
 
-app.get("api/auth/signup", (req, res) => {
-    res.send("Singup endpoint");
-});
-
-app.get("api/auth/login", (req, res) => {
-    res.send("Login endpoint");
-});
-
-app.get("api/auth/logout", (req, res) => {
-    res.send("Logout endpoint");
-});
 
 
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`);
-})
+})      
