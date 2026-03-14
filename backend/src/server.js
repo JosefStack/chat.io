@@ -7,6 +7,8 @@ import { connectDB } from "./lib/db.js";
 import authRouter from "./routes/auth.route.js";
 import messageRouter from "./routes/message.route.js";
 
+import { ENV } from "./lib/env.js";
+
 dotenv.config();
 
 const app = express();
@@ -14,7 +16,7 @@ const __dirname = path.resolve();
 
 console.log(__dirname);
 
-const PORT = process.env.PORT || 3000;
+const PORT = ENV.PORT || 3000;
 
 app.use(express.json()); 
 
@@ -23,7 +25,7 @@ app.use("/api/messages", messageRouter);
 
 
 // deployment setup
-if (process.env.NODE_ENV === "production") {
+if (ENV.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
     app.get("*", (req, res) => {
