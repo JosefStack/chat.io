@@ -27,7 +27,7 @@ export const useChatStore = create((set, get) => (
                 const response = await axiosInstance.get("/messages/contacts");
                 set({ allContacts: response.data });                
             } catch (error) {
-                toast.error(error.response.data.message);
+                toast.error(error?.response?.data?.message);
             } finally {
                 set({ isUsersLoading: false });
             }
@@ -40,7 +40,7 @@ export const useChatStore = create((set, get) => (
                 set({ chats: response.data });
 
             } catch (error) {
-                toast.error(error.response.data.message)
+                toast.error(error?.response?.data?.message)
             } finally {
                 set({ isUsersLoading: false })
             }
